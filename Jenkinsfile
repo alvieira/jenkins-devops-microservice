@@ -67,7 +67,7 @@ pipeline {
 
 		stage('Build Docker Image') {
 			steps {
-				scripts {
+				script {
 					dockerImage = docker.build("alvieira/currency-exchange-devops:${$env.BUILD_TAG}")
 				}				
 			}
@@ -76,7 +76,7 @@ pipeline {
 
 		stage('Push Docker Image') {
 			steps {
-				scripts {
+				script {
 					docker.withRegistry ('', 'dockerhub') {
 						dockerImage.push()
 						dockerImage.push("latest")
